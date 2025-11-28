@@ -51,7 +51,7 @@ def link(message):
 def main(message):
     try:
        print(colorama.Fore.YELLOW+"_" * 176, f'\n{colorama.Fore.RED}LOG:{colorama.Fore.WHITE}{message}\n\nID: {message.chat.id}\nFirst_Name: {message.chat.first_name}\nUserName: {message.chat.username}')
-       bot.send_message(message.chat.id, 'Result: https://t.me/+EcXeTr3c9as1ZGVi\n', os.system(f'python3 my_bot_args.py -c {message.text}'))
+       bot.send_message(message.chat.id, 'Result: https://t.me/+EcXeTr3c9as1ZGVi\n', os.system(f'python3 spy_bot.py -c {message.text}'))
     except telebot.apihelper.ApiTelegramException as e:
            print(f'Ошибка Telegram API: {e}')
     except telebot.apihelper.ApiTelegramException as e:
