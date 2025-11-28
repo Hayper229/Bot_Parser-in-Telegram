@@ -1,17 +1,16 @@
 from telethon import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
-import telethon
 from telethon.errors import FloodWaitError
 import os
 import colorama
 import argparse
 import time
+import telebot
 
-os.system('rm report.html')
-
-api_id = 
-api_hash = ''
-phone = ''
+# Настройки для Telethon
+api_id = API_ID
+api_hash = 'API_HASH'
+phone = '+Phone_Number'
 
 
 client = TelegramClient(phone, api_id, api_hash)
@@ -49,9 +48,11 @@ async def generate_report(messages, users):
         f.write("".join(users))
         f.write("</body></html>")
 
-async def send_report(client):
-    await client.send_file('@Your_Username', 'report.html')
-    print("Отчёт отправлен пользователю @Your_Username")
+async def send_report(client, channel_link, users, messages):
+    with open('report.html', 'r') as f:
+         safe = f.read().split()
+         await client.send_file('@Your_Username', 'report.html',  caption=f'CH: {channel_link} | \nTotal_Users: {len(users)}\nTotal SMS: {len(messages)}_SMS')
+         print("Отчёт отправлен пользователю @Your_Username")
 
 async def func():
     parser = argparse.ArgumentParser()
@@ -64,7 +65,7 @@ async def func():
     messages = await get_messages(client, channel_link)  
     users = await enum_users(client, channel_link)     
     await generate_report(messages, users)  
-    await send_report(client)  
+    await send_report(client, channel_link, users, messages)
     print("Отчёт сгенерирован и отправлен.")
     os.system('rm report.html')
 
@@ -78,3 +79,4 @@ async def main():
 
 with client:
     client.loop.run_until_complete(main())
+                                                                                                                                
