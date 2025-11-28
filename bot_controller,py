@@ -1,0 +1,65 @@
+import telebot
+from whois import whois
+import colorama
+from telethon import TelegramClient # type: ignore #general
+from telethon.tl.functions.channels import JoinChannelRequest # type: ignore #general
+import telethon
+import os
+import time
+
+
+api =  'BOT_TOKEN'
+bot = telebot.TeleBot(api)
+
+@bot.message_handler(commands=['start', 'старт', 'me', 'sticker', 'donate', 'link'])
+def start(message):
+    if message.text == '/start':
+       bot.reply_to(message, f'Hi User {message.chat.id}!!\nВведи канал/чат пример @durov\nдля просмотра справки введи /help или /помощь', parse_mode='Markdown')
+    elif message.text == '/me':
+       me(message)
+    elif message.text == '/link':
+         link(message)
+    elif message.text == '/donate':
+         donate(message)
+    elif message.text == '/sticker':
+         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBUk1oQYhq8vOhu6AygPkr4NACzKoNMQACpRAAAjpR2ErTa1u1cj92ozYE')
+
+
+def me(message):
+    bot.reply_to(message, f'INFO\nID: {message.from_user.id}\nFirst_Name: {message.from_user.first_name}\nUser_Name: {message.from_user.username}', parse_mode=None)
+
+@bot.message_handler(commands=['usage'])
+def usage(message):
+    bot.send_message(message.chat.id, 'Примеры ввода:\n@durov\nhttps://t.me/durov\nhttps://t.me/+YdA1IxvY6ZlkMzQx', parse_mode='Markdown')
+
+
+@bot.message_handler(commands=['help', 'помощь'])
+def helper(message):
+    bot.send_message(message.chat.id, "Команды:\n/start Вернуться в меню\n/usage посмотреть как пользоваться\n/donate поддержать проекта монетой\n/me покажет информацию о вашем аккаунте", parse_mode='Markdown')
+
+def donate(message):
+    bot.reply_to(message, 'Поддержать проект через CryptoBot\nСсылка: https://t.me/send?start=IVHzTShKN4ZP', parse_mode='Markdown')
+    print(f'ID: {message.chat.id}\nFirst_Name: {message.chat.first_name}\nUserName: {message.chat.username}: Usage command /donate')
+
+
+
+def link(message):
+    bot.reply_to(message, 'Ссылка на канал проекта!! -> https://t.me/+EcXeTr3c9as1ZGVi', parse_mode='Markdown')
+
+
+@bot.message_handler(content_types=['text'])
+def main(message):
+    try:
+       print(colorama.Fore.YELLOW+"_" * 176, f'\n{colorama.Fore.RED}LOG:{colorama.Fore.WHITE}{message}\n\nID: {message.chat.id}\nFirst_Name: {message.chat.first_name}\nUserName: {message.chat.username}')
+       bot.send_message(message.chat.id, 'Result: https://t.me/+EcXeTr3c9as1ZGVi\n', os.system(f'python3 my_bot_args.py -c {message.text}'))
+    except telebot.apihelper.ApiTelegramException as e:
+           print(f'Ошибка Telegram API: {e}')
+    except telebot.apihelper.ApiTelegramException as e:
+           print(f'Flood wait error: Нужно подождать {e.seconds} секунд.')
+           time.sleep(e.seconds)
+
+
+
+
+
+bot.polling(none_stop=True)
