@@ -58,7 +58,7 @@ async def generate_report(messages, users):
         print(f"Ошибка при генерации отчета: {e}{colorama.Fore.RESET}")
 
 async def send_report(client, channel_link, users, messages):
-    admin = '@Ares_DevSec'
+    admin = '@AYour_Username'
     try:
         await client.send_file(admin, 'report.html', caption=f'CH: {channel_link} | \nTotal_Users: {len(users)}\nTotal SMS: {len(messages)}\nDate: {time.asctime()}')
         print(f"{colorama.Fore.WHITE}[{colorama.Fore.CYAN}{time.asctime()}{colorama.Fore.WHITE}] {colorama.Fore.GREEN}Отчёт отправлен пользователю {colorama.Fore.YELLOW}{admin}{colorama.Fore.RESET}")
