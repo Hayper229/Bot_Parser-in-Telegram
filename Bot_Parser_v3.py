@@ -6,7 +6,7 @@ import colorama
 import argparse
 import time
 
-# Настройки для Telethon
+
 api_id = API_ID
 api_hash = 'API_HASH'
 phone = 'Phone'
