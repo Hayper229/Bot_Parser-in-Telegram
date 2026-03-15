@@ -102,7 +102,7 @@ async def enum_users(client, channel_link):
 
 async def generate_report(messages, users):
     with open('report.html', 'a', encoding='utf-8') as f:
-        f.write("<html><body style='background-color: black; color: darkgreen; font-family: Arial;'>")
+        f.write('<html lang="ru"><head><meta charset="utf-8"></head><body style="background-color: black; color: darkgreen; font-family: Arial;">')
         f.write(f"\n<h3 style='color: green;'>Generated on <span style='color: red;'>{time.asctime()}</span></h3>\n")
         f.write(f"\n<h2 style='color: green;'>Total messages: <span style='color: yellow;'>{len(messages)}</span></h2>\n")
         f.write("".join(messages))
