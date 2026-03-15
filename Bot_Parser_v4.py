@@ -17,11 +17,11 @@ ADMIN_TAG = '@AYour_Username'
 
 PROXY_LIST = [
     ('IP', PORT, 'SECRET'), # MTProto
-    ('IP', port, 'SECRET'), # MTProto
     ('IP', PORT, 'SECRET'), # MTProto
-    ('IP', port, 'SECRET'), # MTProto
     ('IP', PORT, 'SECRET'), # MTProto
-    ('IP', port, 'SECRET'), # MTProto
+    ('IP', PORT, 'SECRET'), # MTProto
+    ('IP', PORT, 'SECRET'), # MTProto
+    ('IP', PORT, 'SECRET'), # MTProto
     ('IP', PORT, 'SECRET'), # MTProto
   
   #Example socks5   ('IP', PORT), # SOCKS5 
