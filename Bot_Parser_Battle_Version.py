@@ -13,9 +13,9 @@ colorama.init(autoreset=True)
 
 api_id = API_ID
 api_hash = 'API_HASH'
-phone = '+PHONE'
-ADMIN_TAG = '@USERNAME'
-MY_ID = ID  # Твой ID (игнорируется в списке Users)
+phone = '+phone'
+ADMIN_TAG = '@Your_User'
+MY_ID = YOUR_ID  # Твой ID (игнорируется в списке Users)
 
 
 PROXY_LIST = [
@@ -175,10 +175,10 @@ async def func():
             await client.send_file(ADMIN_TAG, 'report.html', caption=caption)
             os.remove('report.html')
             
-            now_t = f"{colorama.Fore.WHITE}[{colorama.Fore.BLUE}{time.asctime()}{colorama.Fore.WHITE}]"
-            print(f"{now_t} {colorama.Fore.GREEN}Отчет отправлен {colorama.Fore.YELLOW}{ADMIN_TAG}")
-            print(f"{now_t} {colorama.Fore.GREEN}Total users  {colorama.Fore.RED}-> {colorama.Fore.YELLOW}{len(users_html)}")
-            print(f"{now_t} {colorama.Fore.GREEN}Total messages  {colorama.Fore.RED}-> {colorama.Fore.YELLOW}{len(data['msgs'])}")
+            #now_t = f"{colorama.Fore.WHITE}[{colorama.Fore.BLUE}{time.asctime()}{colorama.Fore.WHITE}]" GOVNO
+            print(f"{colorama.Fore.WHITE}[{colorama.Fore.BLUE}{time.asctime()}{colorama.Fore.WHITE}] {colorama.Fore.GREEN}Отчет отправлен {colorama.Fore.YELLOW}{ADMIN_TAG}")
+            print(f"{colorama.Fore.WHITE}[{colorama.Fore.BLUE}{time.asctime()}{colorama.Fore.WHITE}] {colorama.Fore.GREEN}Total users  {colorama.Fore.RED}-> {colorama.Fore.YELLOW}{len(users_html)}")
+            print(f"{colorama.Fore.WHITE}[{colorama.Fore.BLUE}{time.asctime()}{colorama.Fore.WHITE}] {colorama.Fore.GREEN}Total messages  {colorama.Fore.RED}-> {colorama.Fore.YELLOW}{len(data['msgs'])}")
 
 async def main():
     await init_client()
